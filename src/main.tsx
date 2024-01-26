@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import { Login } from './pages/login';
 import { Register } from './pages/register';
 import { CreateHome } from './pages/addhome';
+import { HouseList } from './pages/cards';
 const App: React.FC = () => {
   return (
     <Router>
@@ -15,6 +16,7 @@ const App: React.FC = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/home-create" element={<CreateHome/>}/>
         </Routes>
+        <HouseList />
       </AuthProvider>
     </Router>
   );

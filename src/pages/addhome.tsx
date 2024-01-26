@@ -13,6 +13,7 @@ export const CreateHome: React.FC = () => {
     photo: '',
     location: '',
     rooms: 0,
+    _id: '',
   });
 
   const [file, setFile] = useState<File | null>(null);
