@@ -8,7 +8,7 @@ import { signIn } from '../utils/api';
 export const Login: React.FC = () => {
   const [formData, setFormData] = useState<SignEntity.UserSignIn>({ username: '', password: '' });
   const { login } = useAuth();
-  const navigate = useNavigate(); // Move it here
+  const navigate = useNavigate();
 
   const handleSignIn = async (data: SignEntity.UserSignIn) => {
     try {
