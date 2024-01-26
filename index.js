@@ -41,6 +41,23 @@ app.use(session({
   },
 }));
 
+app.delete('/delete-house/:id', async (req, res) => {
+  const houseId = req.params.id;
+
+  try {
+    const deletedHouse = await House.findByIdAndDelete(houseId);
+
+    if (!deletedHouse) {
+      res.status(404).json({ message: 'House not found' });
+      return;
+    }
+
+    res.json({ message: 'House deleted successfully', deletedHouse });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting house', error: error.message });
+  }
+});
+
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
@@ -116,6 +133,25 @@ app.delete('/delete-house/:id', async (req, res) => {
     res.status(500).json({ message: 'Error deleting house', error: error.message });
   }
 });
+
+
+app.delete('/delete-added-house/:id', async (req, res) => {
+  const houseId = req.params.id;
+
+  try {
+    const deletedHouse = await House.findByIdAndDelete(houseId);
+
+    if (!deletedHouse) {
+      res.status(404).json({ message: 'Added house not found' });
+      return;
+    }
+
+    res.json({ message: 'Added house deleted successfully', deletedHouse });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting added house', error: error.message });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
