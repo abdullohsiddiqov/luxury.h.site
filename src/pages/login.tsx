@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '../hooks/AuthContext';
 import { SignEntity } from '../utils/types';
 import { signIn } from '../utils/api';
@@ -6,12 +8,15 @@ import { signIn } from '../utils/api';
 export const Login: React.FC = () => {
   const [formData, setFormData] = useState<SignEntity.UserSignIn>({ username: '', password: '' });
   const { login } = useAuth();
+  const navigate = useNavigate(); // Move it here
 
   const handleSignIn = async (data: SignEntity.UserSignIn) => {
     try {
       const response = await signIn(data);
       console.log('Backend Response:', response.data);
       login(data.username);
+
+      navigate('/');
     } catch (error) {
       console.error('Error during login:', error);
     }
